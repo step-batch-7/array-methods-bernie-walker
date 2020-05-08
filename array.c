@@ -48,11 +48,15 @@ Array_ptr map(Array_ptr src, Mapper mapper)
 Array_ptr filter(Array_ptr src, Predicate predicate)
 {
   Array_ptr result = init_array(src->length);
-  int result_index = 0;
+  if (src->length == 0)
+  {
+    return result;
+  }
 
+  int result_index = 0;
   for (size_t i = 0; i < src->length; i++)
   {
-    if (predicate(src->array[i]) == 1)
+    if (predicate(src->array[i]) == True)
     {
       result->array[result_index] = src->array[i];
       ++result_index;
