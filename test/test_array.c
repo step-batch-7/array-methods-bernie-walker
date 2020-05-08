@@ -1,6 +1,6 @@
 #include "test.h"
 #include "../array.h"
-#include "../helper.h"
+#include "../aider.h"
 
 Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
 {
