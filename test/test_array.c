@@ -1,15 +1,6 @@
 #include "test.h"
 #include "../array.h"
-
-Array_ptr get_default(void)
-{
-  Array_ptr default_array = init_array(4);
-  for (size_t i = 0; i < 4; i++)
-  {
-    default_array->array[i] = i;
-  }
-  return default_array;
-}
+#include "../helper.h"
 
 Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
 {
@@ -29,23 +20,13 @@ Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
   return True;
 }
 
-int add(int num1, int num2)
-{
-  return num1 + num2;
-}
-
 void test_reduce(void)
 {
-  Array_ptr test_array = get_default();
+  Array_ptr test_array = get_default_array(4);
   int total = reduce(test_array, 0, add);
   assert_strict_equal("Should get the sum of all the elements in the array", total, 6);
   test_array = resize_array(test_array, 0);
   assert_strict_equal("Should return the init value when for an empty array", reduce(test_array, 0, add), 0);
-}
-
-Bool is_even(int num)
-{
-  return (num & 1) == 0;
 }
 
 void test_filter(void)
@@ -53,7 +34,7 @@ void test_filter(void)
   Array_ptr expected = init_array(2);
   expected->array[0] = 0;
   expected->array[1] = 2;
-  Array_ptr test_array = get_default();
+  Array_ptr test_array = get_default_array(4);
   Array_ptr filtered = filter(test_array, is_even);
   assert_strict_equal("Should filter out all the non even elements", are_arrays_equal(filtered, expected), True);
   test_array = resize_array(test_array, 0);
@@ -74,7 +55,7 @@ void test_map(void)
   {
     expected->array[i] = get_square(i);
   }
-  Array_ptr test_array = get_default();
+  Array_ptr test_array = get_default_array(4);
   Array_ptr squared = map(test_array, get_square);
   assert_strict_equal("Should square the elements of the array", are_arrays_equal(squared, expected), True);
   test_array = resize_array(test_array, 0);
