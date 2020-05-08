@@ -43,23 +43,18 @@ void test_filter(void)
   assert_strict_equal("The length of the resulting array should be 0 when filtering an empty array", result->length, 0);
 }
 
-int get_square(int num)
-{
-  return num * num;
-}
-
 void test_map(void)
 {
   Array_ptr expected = init_array(4);
   for (size_t i = 0; i < 4; i++)
   {
-    expected->array[i] = get_square(i);
+    expected->array[i] = add_one(i);
   }
   Array_ptr test_array = get_default_array(4);
-  Array_ptr squared = map(test_array, get_square);
+  Array_ptr squared = map(test_array, add_one);
   assert_strict_equal("Should square the elements of the array", are_arrays_equal(squared, expected), True);
   test_array = resize_array(test_array, 0);
-  Array_ptr result = map(test_array, get_square);
+  Array_ptr result = map(test_array, add_one);
   assert_strict_equal("Should return a new empty array when the src array is empty", (result != test_array), 1);
   assert_strict_equal("The length of the resulting array should be 0 when mapping an empty array", result->length, 0);
 }
