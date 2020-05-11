@@ -24,4 +24,6 @@ Object inc_num(Object);
 
 Object get_lower_case(Object);
 
+Bool is_num_even(Object);
+
 #endif // !__AIDER_H_

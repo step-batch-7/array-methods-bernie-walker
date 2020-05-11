@@ -11,7 +11,7 @@ Array_ptr init_array(size_t length)
 Array_ptr resize_array(Array_ptr int_array, size_t length)
 {
   int_array->length = length;
-  Int_ptr new_array_ptr = realloc(int_array->array, int_array->length);
+  Int_ptr new_array_ptr = realloc(int_array->array, int_array->length * sizeof(int));
 
   if (new_array_ptr == NULL)
   {

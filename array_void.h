@@ -21,7 +21,7 @@ ArrayVoid_ptr init_array_void(size_t);
 void display_array_void(char[], ArrayVoid_ptr, Printer);
 
 ArrayVoid_ptr map_void(ArrayVoid_ptr, MapperVoid);
-ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate);
+ArrayVoid_ptr filter_void(ArrayVoid_ptr, PredicateVoid);
 Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer);
 
 void destroy_void_array(ArrayVoid_ptr);

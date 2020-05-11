@@ -59,6 +59,20 @@ Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
   return True;
 }
 
+void test_filter_void(void)
+{
+  ArrayVoid_ptr array_void = get_default_void_array(4, generate_int);
+  ArrayVoid_ptr actual = filter_void(array_void, is_num_even);
+  ArrayVoid_ptr expected = init_array_void(2);
+  expected->array[0] = generate_int(0);
+  expected->array[1] = generate_int(2);
+
+  Bool are_equal = compare_void_arrays(actual, expected, are_numbers_equal);
+  assert_strict_equal("Should filter all the even numbers", are_equal, True);
+  ArrayVoid_ptr void_arrays1[] = {array_void, expected};
+  destroy_all_void_arrays(2, void_arrays1);
+}
+
 void test_map_void(void)
 {
   ArrayVoid_ptr array_void = get_default_void_array(4, generate_int);
@@ -133,6 +147,7 @@ int main(void)
   exec_test_suite("filter", test_filter);
   exec_test_suite("reduce", test_reduce);
   exec_test_suite("map_void", test_map_void);
+  exec_test_suite("filter_void", test_filter_void);
   print_report();
   return 0;
 }

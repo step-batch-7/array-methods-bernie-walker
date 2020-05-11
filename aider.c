@@ -65,3 +65,8 @@ Object get_lower_case(Object alphabet)
   *(char *)result = *(char *)alphabet + 22;
   return result;
 }
+
+Bool is_num_even(Object num)
+{
+  return is_even(*(int *)num);
+}
