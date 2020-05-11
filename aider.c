@@ -1,4 +1,5 @@
 #include "aider.h"
+#include "array_void.h"
 
 int add(int num1, int num2)
 {
@@ -23,4 +24,30 @@ Array_ptr get_default_array(size_t length)
     int_array->array[i] = i;
   }
   return int_array;
+}
+
+Object generate_int(int value)
+{
+  Object int_value = malloc(sizeof(int));
+  *(int *)int_value = value;
+  return int_value;
+}
+
+Object generate_char(int value)
+{
+  Object char_value = malloc(1);
+  *(char *)char_value = 97 + value;
+  return char_value;
+}
+
+ArrayVoid_ptr get_default_void_array(size_t length, Genearator value_generator)
+{
+  ArrayVoid_ptr array_void = init_array_void(length);
+
+  for (size_t i = 0; i < array_void->length; i++)
+  {
+    array_void->array[i] = value_generator(i);
+  }
+
+  return array_void;
 }
