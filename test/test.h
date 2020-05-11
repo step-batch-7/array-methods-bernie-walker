@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#ifndef __TEST_C_
-#define __TEST_C_
+#ifndef __TEST_H_
+#define __TEST_H_
 
 typedef enum
 {

@@ -1,6 +1,37 @@
 #include "test.h"
 #include "../array.h"
+#include "../array_void.h"
 #include "../aider.h"
+
+typedef Bool (*Comparator)(Object, Object);
+
+Bool are_chars_equal(Object char1, Object char2)
+{
+  return *(char *)char1 == *(char *)char2;
+}
+
+Bool are_numbers_equal(Object num1, Object num2)
+{
+  return *(int *)num1 == *(int *)num2;
+}
+
+Bool compare_void_arrays(ArrayVoid_ptr array_void1, ArrayVoid_ptr array_void2, Comparator equality_checker)
+{
+  if (array_void1->length != array_void2)
+  {
+    return False;
+  }
+
+  for (size_t i = 0; i < array_void1->length; i++)
+  {
+    if (!equality_checker(array_void1->array[i], array_void2->array[i]))
+    {
+      return False;
+    }
+  }
+
+  return True;
+}
 
 Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
 {
