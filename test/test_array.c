@@ -51,6 +51,26 @@ Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
   return True;
 }
 
+void test_map_void(void)
+{
+  ArrayVoid_ptr array_void_int = get_default_void_array(4, generate_int);
+  ArrayVoid_ptr expected1 = init_array_void(4);
+  for (size_t i = 0; i < 4; i++)
+  {
+    expected1->array[i] = generate_int(i + 1);
+  }
+  ArrayVoid_ptr array_void_char = get_default_void_array(4, generate_char);
+  ArrayVoid_ptr expected2 = init_array_void(4);
+  for (size_t i = 0; i < 4; i++)
+  {
+    expected2->array[i] = generate_int(i + 22);
+  }
+  destroy_void_array(array_void_int);
+  destroy_void_array(array_void_char);
+  destroy_void_array(expected1);
+  destroy_void_array(expected2);
+}
+
 void test_reduce(void)
 {
   Array_ptr test_array = get_default_array(4);

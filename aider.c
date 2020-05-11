@@ -36,7 +36,7 @@ Object generate_int(int value)
 Object generate_char(int value)
 {
   Object char_value = malloc(1);
-  *(char *)char_value = 97 + value;
+  *(char *)char_value = 65 + value;
   return char_value;
 }
 
@@ -50,4 +50,18 @@ ArrayVoid_ptr get_default_void_array(size_t length, Genearator value_generator)
   }
 
   return array_void;
+}
+
+Object inc_num(Object num)
+{
+  Object result = malloc(sizeof(int));
+  *(int *)result = *(int *)num + 1;
+  return result;
+}
+
+Object get_lower_case(Object alphabet)
+{
+  Object result = malloc(sizeof(char));
+  *(char *)result = *(char *)alphabet + 22;
+  return result;
 }

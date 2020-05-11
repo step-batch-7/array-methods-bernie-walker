@@ -20,4 +20,8 @@ Object generate_char(int);
 
 ArrayVoid_ptr get_default_void_array(size_t, Genearator);
 
+Object inc_num(Object);
+
+Object get_lower_case(Object);
+
 #endif // !__AIDER_H_
