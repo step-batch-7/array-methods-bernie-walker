@@ -20,10 +20,11 @@ typedef ArrayVoid *ArrayVoid_ptr;
 
 ArrayVoid_ptr init_array_void(size_t);
 void display_array_void(char[], ArrayVoid_ptr, Printer);
+ArrayVoid_ptr resize_void_array(ArrayVoid_ptr, size_t);
 
 ArrayVoid_ptr map_void(ArrayVoid_ptr, MapperVoid);
 ArrayVoid_ptr filter_void(ArrayVoid_ptr, PredicateVoid);
-Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer);
+Object reduce_void(ArrayVoid_ptr, Object, ReducerVoid);
 
 void destroy_void_array(ArrayVoid_ptr);
 

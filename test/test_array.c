@@ -64,7 +64,15 @@ void test_reduce_void(void)
   ArrayVoid_ptr array_void = get_default_void_array(4, generate_int);
   Object actual = reduce_void(array_void, malloc(sizeof(int)), add_numbers);
   assert_strict_equal("Should add all the numbers in the list", *(int *)actual, 6);
-  destroy_void_array(array_void);
+  free(actual);
+
+  array_void = resize_void_array(array_void, 0);
+  *(int *)actual = 9;
+
+  actual = reduce_void(array_void, actual, add_numbers);
+  assert_strict_equal("Should return the initial value when the array is empty", *(int *)actual, 9);
+
+  free(array_void);
   free(actual);
 }
 
