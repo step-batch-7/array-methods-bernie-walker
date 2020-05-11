@@ -5,6 +5,14 @@
 
 typedef Bool (*Comparator)(Object, Object);
 
+void destroy_all_void_arrays(size_t length, ArrayVoid_ptr void_arrays[length])
+{
+  for (size_t i = 0; i < length; i++)
+  {
+    destroy_void_array(void_arrays[i]);
+  }
+}
+
 Bool are_chars_equal(Object char1, Object char2)
 {
   return *(char *)char1 == *(char *)char2;
@@ -53,22 +61,31 @@ Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
 
 void test_map_void(void)
 {
-  ArrayVoid_ptr array_void_int = get_default_void_array(4, generate_int);
-  ArrayVoid_ptr expected1 = init_array_void(4);
+  ArrayVoid_ptr array_void = get_default_void_array(4, generate_int);
+  ArrayVoid_ptr actual = map_void(array_void, inc_num);
+  ArrayVoid_ptr expected = init_array_void(4);
   for (size_t i = 0; i < 4; i++)
   {
-    expected1->array[i] = generate_int(i + 1);
+    expected->array[i] = generate_int(i + 1);
   }
-  ArrayVoid_ptr array_void_char = get_default_void_array(4, generate_char);
-  ArrayVoid_ptr expected2 = init_array_void(4);
+
+  Bool are_equal = compare_void_arrays(actual, expected, are_numbers_equal);
+  assert_strict_equal("Should increment all the numbers in void array", are_equal, True);
+  ArrayVoid_ptr void_arrays1[] = {array_void, actual, expected};
+  destroy_all_void_arrays(3, void_arrays1);
+
+  array_void = get_default_void_array(4, generate_char);
+  actual = map_void(array_void, get_lower_case);
+  expected = init_array_void(4);
   for (size_t i = 0; i < 4; i++)
   {
-    expected2->array[i] = generate_int(i + 22);
+    expected->array[i] = generate_char(i + 22);
   }
-  destroy_void_array(array_void_int);
-  destroy_void_array(array_void_char);
-  destroy_void_array(expected1);
-  destroy_void_array(expected2);
+
+  are_equal = compare_void_arrays(actual, expected, are_chars_equal);
+  assert_strict_equal("Should change all the letters to lower case", are_equal, True);
+  ArrayVoid_ptr void_arrays2[] = {array_void, actual, expected};
+  destroy_all_void_arrays(3, void_arrays2);
 }
 
 void test_reduce(void)
@@ -115,6 +132,7 @@ int main(void)
   exec_test_suite("map", test_map);
   exec_test_suite("filter", test_filter);
   exec_test_suite("reduce", test_reduce);
+  exec_test_suite("map_void", test_map_void);
   print_report();
   return 0;
 }
