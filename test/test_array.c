@@ -59,6 +59,15 @@ Bool are_arrays_equal(Array_ptr int_array1, Array_ptr int_array2)
   return True;
 }
 
+void test_reduce_void(void)
+{
+  ArrayVoid_ptr array_void = get_default_void_array(4, generate_int);
+  Object actual = reduce_void(array_void, malloc(sizeof(int)), add_numbers);
+  assert_strict_equal("Should add all the numbers in the list", *(int *)actual, 6);
+  destroy_void_array(array_void);
+  free(actual);
+}
+
 void test_filter_void(void)
 {
   ArrayVoid_ptr array_void = get_default_void_array(4, generate_int);
@@ -148,6 +157,7 @@ int main(void)
   exec_test_suite("reduce", test_reduce);
   exec_test_suite("map_void", test_map_void);
   exec_test_suite("filter_void", test_filter_void);
+  exec_test_suite("reduce_void", test_reduce_void);
   print_report();
   return 0;
 }

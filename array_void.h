@@ -4,6 +4,7 @@
 #include "array.h"
 
 typedef void *Object;
+
 typedef Object (*MapperVoid)(Object);
 typedef Bool (*PredicateVoid)(Object);
 typedef Object (*ReducerVoid)(Object, Object);

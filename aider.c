@@ -70,3 +70,9 @@ Bool is_num_even(Object num)
 {
   return is_even(*(int *)num);
 }
+
+Object add_numbers(Object num1, Object num2)
+{
+  *(int *)num1 = *(int *)num1 + *(int *)num2;
+  return num1;
+}
