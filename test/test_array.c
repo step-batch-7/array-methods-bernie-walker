@@ -88,6 +88,17 @@ void test_filter_void(void)
   assert_strict_equal("Should filter all the even numbers", are_equal, True);
   ArrayVoid_ptr void_arrays1[] = {array_void, expected};
   destroy_all_void_arrays(2, void_arrays1);
+
+  array_void = get_default_void_array(5, generate_char);
+  actual = filter_void(array_void, is_vowel);
+  expected = init_array_void(2);
+  expected->array[0] = generate_char(0);
+  expected->array[1] = generate_char(4);
+
+  are_equal = compare_void_arrays(actual, expected, are_chars_equal);
+  assert_strict_equal("Should filter out all the vowels", are_equal, True);
+  ArrayVoid_ptr void_arrays2[] = {array_void, expected};
+  destroy_all_void_arrays(2, void_arrays2);
 }
 
 void test_map_void(void)

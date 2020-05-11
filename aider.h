@@ -26,6 +26,8 @@ Object get_lower_case(Object);
 
 Bool is_num_even(Object);
 
+Bool is_vowel(Object);
+
 Object add_numbers(Object, Object);
 
 #endif // !__AIDER_H_

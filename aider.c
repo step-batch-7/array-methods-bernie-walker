@@ -71,6 +71,19 @@ Bool is_num_even(Object num)
   return is_even(*(int *)num);
 }
 
+Bool is_vowel(Object alphabet)
+{
+  char refernce[] = "aeiouAEIOU";
+  for (size_t i = 0; i < 10; i++)
+  {
+    if (refernce[i] == *(char *)alphabet)
+    {
+      return True;
+    }
+  }
+  return False;
+}
+
 Object add_numbers(Object num1, Object num2)
 {
   *(int *)num1 = *(int *)num1 + *(int *)num2;
