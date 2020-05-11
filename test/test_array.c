@@ -17,7 +17,7 @@ Bool are_numbers_equal(Object num1, Object num2)
 
 Bool compare_void_arrays(ArrayVoid_ptr array_void1, ArrayVoid_ptr array_void2, Comparator equality_checker)
 {
-  if (array_void1->length != array_void2)
+  if (array_void1->length != array_void2->length)
   {
     return False;
   }
