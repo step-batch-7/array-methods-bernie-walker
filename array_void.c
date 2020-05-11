@@ -17,3 +17,13 @@ void display_void_array(char message[], ArrayVoid_ptr array_void, Printer displa
   }
   printf("\n");
 }
+
+void destroy_void_array(ArrayVoid_ptr array_void)
+{
+  for (size_t i = 0; i < array_void->length; i++)
+  {
+    free(array_void->array[i]);
+  }
+  free(array_void->array);
+  free(array_void);
+}
